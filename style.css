@@ -1,0 +1,90 @@
+body {
+  background: #c6c4c7;
+  font-family: 'Roboto', sans-serif;
+}
+
+.menu{
+  width: 420px;
+  height: 40px;
+  margin-top: 40px;
+  margin-left: 80px;
+  background: #dbdbde;
+  border-radius: 40px;
+}
+
+.score{
+  font-family: 'Roboto Mono', monospace;
+  width: 100px;
+  float: right;
+  text-align: right;
+  padding: 8px;
+  padding-right: 17px;
+}
+
+.alert{
+  width: 300px;
+  padding: 10px;
+  padding-left: 17px;
+}
+
+.field {
+  margin-top: 40px;
+  margin-left: 80px;
+  width: 420px;
+  height: 420px;
+  background: #6f6e74;
+  border-radius: 18px;
+  padding: 2px;
+}
+
+.wrapperCard {
+  width: 100px;
+  height: 100px;
+  perspective: 500px;
+  display: inline-block;
+  margin: 2px;
+  margin-bottom:-2px;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  transition: transform .3s ease-in-out;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  position: relative;
+}
+
+.cardFace {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius:16px;
+}
+
+.cardFaceFront {
+  background: #c6c4c7;
+}
+
+.cardFaceBack {
+  background: white;
+  transform: rotateY(180deg);
+}
+
+.cardClosed{
+  opacity: 0;
+  transition: opacity .1s ease-in-out;
+}
+
+.is-flipped {
+  transform: rotateY(-180deg);
+}
+
+.emoji {
+	position: absolute;
+  width: 60px;
+  height: 60px;
+  margin-left: 20px;
+  margin-top: 20px;
+}
