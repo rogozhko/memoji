@@ -1,4 +1,4 @@
-// script02 stable_0.1
+// stable.01
 
 //Убрать повторение в массиве
 //Если выбрать две одинаковые и быстро выбрать еще одну — ломается
@@ -91,7 +91,7 @@ function addImgs() {
     img.className = 'emoji';
 
     var randNum = getRandom(smallMass);
-    var randImgFromSmall = 'design/png/bigMassive/' + smallMass[randNum] + '.png';
+    var randImgFromSmall = 'design/emoji/' + smallMass[randNum] + '.png';
     // img.classList.add('num' + i);
 
     img.setAttribute("src", randImgFromSmall);
@@ -199,13 +199,15 @@ function checkCount() {
 }
 
 function start() {
-
   addField();
   addCards();
   addImgs();
   showAllCards();
   setTimeout(showAllCards, 3000);
-  setFirstTap();
+  function addTap() {
+    setFirstTap();
+  }
+  setTimeout(addTap, 3000)
 }
 
 addMenu();
