@@ -1,56 +1,28 @@
-// stable.01
-
-//Убрать повторение в массиве
-//Если выбрать две одинаковые и быстро выбрать еще одну — ломается
+// engine stable.01
 
 var field;
-var menu;
-var score;
-var alert;
-
 var firstELemSrc;
 var secondELemSrc;
 var count = 0;
 var cards = document.getElementsByClassName('card');
 var cardFaceBack = document.getElementsByClassName('cardFaceBack');
 
-function setFirstTap() {
-  for (var i = 0; i < cards.length; i++) {
-    cards[i].addEventListener('click', firstTap);
-  };
-}
-function setSecondTap() {
-  for (var i = 0; i < cards.length; i++) {
-    cards[i].addEventListener('click', secondTap);
-  };
-}
-function removeTap() {
-  for (var i = 0; i < cards.length; i++) {
-    cards[i].removeEventListener('click', firstTap);
-    cards[i].removeEventListener('click', secondTap);
-  };
-}
-
-function showAllCards() {
-  var i = 0;
-  var load = setInterval(function() {
-    cards[i].classList.toggle('is-flipped');
-    i++;
-    if (i===16) {
-      clearInterval(load);
-    }
-  }, 20);
-}
+var menu;
+var button;
+var scoreP;
+var score = 0;
+var alert;
+var title;
 
 function addMenu() {
   menu = document.createElement('div');
   menu.className = 'menu';
   document.body.appendChild(menu);
 
-  score = document.createElement('p');
-  score.className = 'score';
-  menu.appendChild(score);
-  score.innerHTML = '0';
+  scoreP = document.createElement('p');
+  scoreP.className = 'score';
+  menu.appendChild(scoreP);
+  scoreP.innerHTML = score;
 
   alert = document.createElement('p');
   alert.className = 'alert';
@@ -102,6 +74,50 @@ function addImgs() {
   smallMass = smallMassSave.slice(0);
 }
 
+//Стартовый и конечный экраны
+function addScreen(titleTxt, butName) {
+  title = document.createElement('p');
+  title.className = 'title';
+  document.body.appendChild(title);
+  title.innerHTML = titleTxt;
+  button = document.createElement('button');
+  button.className = 'button';
+  button.addEventListener("click", start);
+  button.innerHTML = butName;
+  document.body.appendChild(button);
+}
+
+//Три функции устанавливают первое нажатие, второе и удаляют события
+function setFirstTap() {
+  for (var i = 0; i < cards.length; i++) {
+    cards[i].addEventListener('click', firstTap);
+  };
+}
+function setSecondTap() {
+  for (var i = 0; i < cards.length; i++) {
+    cards[i].addEventListener('click', secondTap);
+  };
+}
+function removeTap() {
+  for (var i = 0; i < cards.length; i++) {
+    cards[i].removeEventListener('click', firstTap);
+    cards[i].removeEventListener('click', secondTap);
+  };
+}
+
+//Переворачивает все карточки
+function showAllCards() {
+  var i = 0;
+  var load = setInterval(function() {
+    cards[i].classList.toggle('is-flipped');
+    i++;
+    if (i===16) {
+      clearInterval(load);
+    }
+  }, 20);
+}
+
+//Работа с карточками
 function firstTap() {
   removeTap();
 
@@ -159,6 +175,10 @@ function matchCards() {
   secondCard[0].className = 'cardClosed';
   secondCard[0].removeAttribute("name");
 
+  score += 100;
+  scoreP.innerHTML = score;
+  console.log(score);
+
   //Всем оставшимся картам ставим первый клик
   setFirstTap();
   checkCount();
@@ -181,12 +201,12 @@ function noMatch() {
 function reset() {
 
   field.remove();
+  menu.remove();
 
-  setFirstTap();
   checkBigMass();
   getImgFromBig();
 
-  start();
+  addScreen("Ура! Все карточки собраны!", "Новая игра");
 
   count = 0;
 }
@@ -199,16 +219,22 @@ function checkCount() {
 }
 
 function start() {
+  document.body.removeChild(title);
+  document.body.removeChild(button);
+  addMenu();
   addField();
   addCards();
   addImgs();
   showAllCards();
-  setTimeout(showAllCards, 3000);
+  //Закрываем карточки через 3с
+  // setTimeout(showAllCards, 3000);
   function addTap() {
     setFirstTap();
   }
-  setTimeout(addTap, 3000)
+  setTimeout(addTap, 1000)
 }
 
-addMenu();
-start();
+
+
+
+addScreen("Собирайте по две одинаковых карточки", "Начать игру");

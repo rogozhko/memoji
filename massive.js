@@ -113,17 +113,12 @@ function getImgFromBig() {
   for (var i = 0; i < 8; i++) {
     var randNum = getRandom(bigMass);
     randImgFromBase = bigMass[randNum];
-    console.log(randImgFromBase);
+    // console.log(randImgFromBase);
     addTwo();
     bigMass.splice(randNum, 1);
   }
-  console.log(smallMass);
-  console.log(bigMass);
+  // console.log(smallMass);
+  // console.log(bigMass);
 }
 
 getImgFromBig();
-
-
-
-//flip
-// https://3dtransforms.desandro.com/card-flip
