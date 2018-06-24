@@ -227,11 +227,11 @@ function start() {
   addImgs();
   showAllCards();
   //Закрываем карточки через 3с
-  // setTimeout(showAllCards, 3000);
+  setTimeout(showAllCards, 3000);
   function addTap() {
     setFirstTap();
   }
-  setTimeout(addTap, 1000)
+  setTimeout(addTap, 3000)
 }
 
 
